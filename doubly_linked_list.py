@@ -64,6 +64,47 @@ class doublyLL:
             n.nref = new_node
             new_node.pref = n
 
+# Add element after a given node
+    def add_after(self, data, x):
+        n = self.head
+        while n is not None:
+            if x == n.data:
+                break
+            n = n.nref
+        if n is None:
+            print("Node is not present in the linked list")
+        else:
+            new_node = Node(data)
+            new_node.pref = n
+            new_node.nref = n.nref
+            if n.nref is not None:
+                n.nref.pref = new_node
+            n.nref = new_node
+# Add element before a given node
+    def add_before(self, data, x):
+        if self.head is None:
+            print("Linked list is empty")
+            return
+        if self.head.data == x:
+            new_node = Node(data)
+            new_node.nref = self.head
+            self.head.pref = new_node
+            self.head = new_node
+            return
+        n = self.head
+        while n.nref is not None:
+            if n.nref.data == x:
+                break
+            n = n.nref
+        if n.nref is None:
+            print("Node is not found")
+        else:
+            new_node = Node(data)
+            new_node.pref = n
+            new_node.nref = n.nref
+            n.nref.pref = new_node
+            n.nref = new_node
+
 dl1 = doublyLL()
 dl1.insert_empty(50)
 dl1.add_begin(10)
